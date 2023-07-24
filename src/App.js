@@ -1,24 +1,45 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
+import Login from "./screens/Login/Login"
+import SignUp from "./screens/SignUp/SignUp"
+import Chat from "./screens/Chat/Chat"
+import { Routes, Route, useNavigate } from "react-router-dom"
+import { useState } from 'react';
 
-function App() {
+const App = () => {
+  // const [user, setUser] = useState(null)
+  // const [password, setPassword] = useState(null)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const user = window.localStorage.getItem("user")
+    user ? navigate("/") : navigate("/signup")
+  }, [navigate])
+
+
+  // const login = (user, password) => {
+  //   setUser(user)
+  //   setPassword(password)
+  //   window.localStorage.setItem("user", user)
+  // }
+
+  const logout = () => {
+    // setUser(null)
+    // setPassword(null)
+    window.localStorage.clear()
+  }
+
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Chat />} />
+      </Routes>
     </div>
+
   );
 }
 

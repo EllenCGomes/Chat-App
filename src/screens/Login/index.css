@@ -1,0 +1,10 @@
+.text {
+    font-size: 12px;
+    color: #075E55;
+    font-weight: 500;
+}
+
+.spanLink {
+    cursor: pointer;
+    text-decoration: underline;
+}
